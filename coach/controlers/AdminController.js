@@ -3,7 +3,7 @@ var AdminModel = require("../model/AdminModels");
 
 
 async function DashboardView(req,res){
-    const students = await studentModel.countDocuments();
+    const students = await studentModel.countDocuments({s});
     res.render("admin/dashboard",{"students":students});
 }
 function ManageStudent(req,res){
