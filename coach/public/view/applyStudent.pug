@@ -1,0 +1,44 @@
+extend base.pug
+
+block content 
+    .container 
+        .row 
+            .col-6.mx-auto 
+                .card   
+                    .card-body 
+                        form(action="" method="post") 
+                            .mb-3 
+                                label(for="") name 
+                                input.form-control(type="text" name="name")
+                            .mb-3 
+                                label(for="") father 
+                                input.form-control(type="text" name="father")
+                            .mb-3 
+                                label(for="") contact 
+                                input.form-control(type="number" name="contact")
+                            .mb-3 
+                                label(for="") email 
+                                input.form-control(type="email" name="email")
+                            .mb-3 
+                                label(for="") address 
+                                input.form-control(type="text" name="address")
+                            .mb-3 
+                                label(for="") gender 
+                                .d-flex 
+                                    .form-check.me-2 
+                                        input.form-check-input(type="radio" name="gender" value="Male") 
+                                        label(for="") Male
+                                    .form-check
+                                        input.form-check-input(type="radio" name="gender" value="Felmale") 
+                                        label(for="") Female
+                                    .form-check
+                                        input.form-check-input(type="radio" name="gender" value="Other") 
+                                        label(for="") Other
+                            .mb-3 
+                                label(for="") password  
+                                input.form-control(type="password" name="password")
+                            .mb-3 
+                                label(for="") education (currently) 
+                                input.form-control(type="text" name="education")
+                            .mb-3 
+                                input.btn.btn-success(type="submit" , name="send").w-100

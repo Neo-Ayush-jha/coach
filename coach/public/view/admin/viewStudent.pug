@@ -1,0 +1,32 @@
+extend base.pug
+block content 
+    .container.mt-5
+        .row
+            .col-6  
+                p.fs-3 View Student Details 
+            .col-6 
+                a.btn.btn-success(href=`/admin/approve-student/${student._id}`) Approve Admission 
+                a.btn.btn-danger(href="") Deactivate
+
+    table.table 
+        tr 
+            th Name 
+            td=student.name
+        tr 
+            th Contact 
+            td=student.contact 
+        tr 
+            th Father Name 
+            td=student.father 
+        tr 
+            th Email 
+            td=student.email
+        tr 
+            th Address  
+            td=student.address 
+        tr 
+            th Education 
+            td=student.education 
+        tr 
+            th Gender 
+            td=student.gender

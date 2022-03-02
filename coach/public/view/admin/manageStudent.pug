@@ -1,0 +1,30 @@
+extend base.pug 
+block content 
+    .card
+        .card-body 
+            table.table 
+                tr  
+                    th Name
+                    th Father
+                    th Contact
+                    th Email
+                    th Address
+                    th Gender
+                    th Password
+                    th Education (currently) 
+                    th Action
+                each val in student
+                    tr 
+                    td=val.name
+                    td=val.father
+                    td=val.contact 
+                    td=val.email
+                    td=val.address
+                    td=val.gender 
+                    td=val.password  
+                    td=val.education
+                    td
+                        a.btn.btn-danger.px-0(href="")
+                            i.bi.bi-trash-fill 
+                        a.btn.btn-success.ms-2.px-0(href=`/admin/student/${val._id}/view/`)
+                            i.bi.bi-eye

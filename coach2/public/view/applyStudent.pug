@@ -1,0 +1,73 @@
+extend base.pug
+block con 
+    .container 
+        .row
+            .col-6.mx-auto.mt-5 
+                .card
+                    h2.card-title APPLY FOR ADMISSION 
+                    .card-body
+                        form(action="", method="post") 
+                            .mb-3 
+                                label(for="") NAME 
+                                input.form-control(type="text" name="name") 
+                            .mb-3 
+                                label(for="") FATHER NAME 
+                                input.form-control(type="text" name="father") 
+                            .mb-3 
+                                label(for="") CONTACT 
+                                input.form-control(type="text" name="contact") 
+                            .mb-3 
+                                label(for="") EMAIL 
+                                input.form-control(type="text" name="email") 
+                            .mb-3 
+                                label(for="") ADDRESS 
+                                input.form-control(type="text" name="address") 
+                            .mb-3 
+                                label(for="") GENDER 
+                                .d-flex 
+                                    .form-check.me-2 
+                                        input.form-check-input(type="radio" name="gender" value="male")
+                                        label(for="") MALE
+                                    .form-check.me-2 
+                                        input.form-check-input(type="radio" name="gender" value="female")
+                                        label(for="") FEMALE
+                                    .form-check.me-2 
+                                        input.form-check-input(type="radio" name="gender" value="other")
+                                        label(for="") OTHER
+                            .mb-3 
+                                label(for="") EDUCATION  
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="bca")
+                                        label(for="") BCA
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="bba")
+                                        label(for="") BBA
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="bsc(phy)")
+                                        label(for="") BSC(phy)
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="bsc(chy)")
+                                        label(for="") BSC(chy)
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="bsc(math)")
+                                        label(for="") BSC(math)
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="12th(pcm)")
+                                        label(for="") 12th(pcm)
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="12th(pcb)")
+                                        label(for="") 12th(pcb)
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="12th(com)")
+                                        label(for="") 12th(com)
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="10")
+                                        label(for="") 10
+                                .form-check.me-2 
+                                        input.form-check-input(type="radio" name="education" value="other")
+                                        label(for="") other
+                            .mb-3 
+                                label(for="") PASSWORD 
+                                input.form-control(type="password" name="password") 
+                            .mb-3 
+                                input.btn.btn-success(type="submit" name="submit").w-100

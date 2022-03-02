@@ -1,0 +1,35 @@
+extend base.pug
+block con 
+    .container-fluid 
+        .row
+            .col-4.bg-warning(style="height:100vh")
+                .row.mt-5
+                        .col-10.mx-auto.mt-5 
+                            .card.mt-5 
+                                .card-body 
+                                    h2.card-title Student Login 
+                                    form.mt-2(action="" method="post")  
+                                        .mb-3 
+                                            .form-floating 
+                                                input.form-control(type="text" placeholder=" enter email")
+                                                label(for="") Email/Mobile
+                                        .mb-3 
+                                            .form-floating 
+                                                input.form-control(type="text" placeholder=" enter password")
+                                                label(for="") Password 
+                                        .mb-3 
+                                            .form-floating 
+                                                input.btn.btn-success.w-10(type="submit")
+            .col-8(style="height:100vh").bg-dark.gx-0
+                nav.navbar.navbar-expand.navbar-dark.bg-primary 
+                    .container.px-3 
+                        a.navbar-brand(href="") AWS 
+                        ul.navbar-nav 
+                            li.nav-item 
+                                a.nav-link(href="") Home
+                            li.nav-item 
+                                a.nav-link(href="") About
+                            li.nav-item 
+                                a.nav-link(href="") Course
+                            li.nav-item 
+                                a.btn.btn-danger(href="/apply") apply for admission
