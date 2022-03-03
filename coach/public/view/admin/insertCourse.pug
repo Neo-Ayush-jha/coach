@@ -1,0 +1,50 @@
+extend base.pug
+block content 
+    .container  
+        .card
+            .card-body 
+                form(action="",method="post") 
+                    .mb-3 
+                        label(for="") Name
+                        input.form-control(type="text", name="name")
+                    .mb-3 
+                        label(for="") Insertor
+                        input.form-control(type="text", name="insertor")
+                    .mb-3 
+                        label(for="") Duration
+                        input.form-control(type="text", name="duration")
+                    .mb-3 
+                        label(for="") Price
+                        input.form-control(type="text", name="price")
+                    .mb-3 
+                        label(for="") Duration
+                        input.form-control(type="text", name="duration")
+                    .mb-3 
+                        label(for="") discount_price
+                        input.form-control(type="text", name="discount_price")
+                    .mb-3 
+                        label(for="") Category
+                        select.form-select(name="category_id") 
+                            each  x in category 
+                                option(value=`${x._id}`)=x.cat_title 
+                        a.text-danger.text-decoration.none(href="", data-bs-toggle="model",data-bs-target="#insertCat") Create new Category 
+                    .mb-3 
+                        label(for="") description
+                        input.form-control(type="text", name="description")
+                    .mb-3 
+                        input.btn.btn-success.w-100(type="submit", value="Insert Course")
+    .model.fade#insertCat 
+        .modal-dialog 
+            .model-content 
+                .model-header 
+                    h6 Insert category header
+                .model-body 
+                    form(action="/admin/insert-course-category", method="post") 
+                        .mb-3 
+                            label(for="") Category Title 
+                            input.form-control(type="text" name="cat_title")
+                        .mb-3 
+                            label(for="") Category Description 
+                            input.form-control(type="text" name="cat_description")
+                        .mb-3 
+                            input.btn.btn-success(type="submit" value="Insert Category")

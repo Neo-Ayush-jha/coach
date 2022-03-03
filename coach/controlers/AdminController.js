@@ -1,6 +1,6 @@
 var studentModel = require("../model/StudentModels");
 var AdminModel = require("../model/AdminModels");
-
+const{response} = require("express");
 
 async function DashboardView(req,res){
     const students = await studentModel.countDocuments({s});
@@ -32,15 +32,62 @@ function NewAdmission(req,res){
     res.redirect("/admin/manage-student");
 
 }
+async function DeactiveStudent(req,res){
+    var id = req.params.id;
+    await studentModel.findOneAndUpdate({"_id":id},{status:1},{new:true})
+    res.render("/admin/student/${id}/view/");
+}
+function DeleteStudent(req,res){
+    var del_id = req.parsms.id;
+    studentModel.remove({"_id":del_id},function(error){
+        if(error){
+            throw error
+        }else{
+            res.redirect('/admin/new-admission')
+        }
+    })
+}
 // admin insertion work
 function InsertAdmin(req,res){
     var admin= new AdminModel({
         name:"admin",
         email:"admim@gmail.com",
-        password:"123654"
+        password:"123"
     });
     admin.save();
 }
+async function AdminLogin(req,res){
+    try{
+        const{email,password}=req.body;
+        console.log(email);
+        const result = await AdminModel.findOne({email:email});
+        console.log(result);
+        if(result != null){
+            if(result.email == email && result.password == password){
+                req.session.user_id = result._id;
+                res.redirect('/admin/dashboard')
+            }
+            else{
+                res.send('worng password')
+            }
+        }else{
+            res.send('wrong email and password')
+        }
+    }catch (error){
+        console.log(error.massage);
+    }
+}
+
+// function logout(req, res){
+//     req.session.destroy(function(error){
+//         if(error){
+//             console.log('session not deleted');
+//         }
+//         else{
+            
+//         }
+//     })
+// }
 
 
 module.exports = {
@@ -50,4 +97,7 @@ module.exports = {
     ViewStudent,
     ApproveStudent,
     InsertAdmin,
+    DeactiveStudent,
+    DeleteStudent,
+    AdminLogin,
 }

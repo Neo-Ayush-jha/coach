@@ -1,0 +1,22 @@
+extend base.pug
+block content 
+    .container-fluid.bg-danger(style="height:100vh")
+            .row
+                .col-6.mx-auto
+                    .row
+                        .col-10.bg-warning(style="height:100vh").mx-auto
+                            .card(style="margin-top:175px") 
+                                .card-body 
+                                    h2.card-title Admin Login 
+                                    form.mt-2(action="" method="post")  
+                                        .mb-3 
+                                            .form-floating 
+                                                input.form-control(type="email" placeholder=" enter email")
+                                                label(for="") Email/Mobile
+                                        .mb-3 
+                                            .form-floating 
+                                                input.form-control(type="password" placeholder=" enter password")
+                                                label(for="") Password 
+                                        .mb-3 
+                                            .form-floating 
+                                                input.btn.btn-success.w-10(type="submit" value="Login")

@@ -1,7 +1,11 @@
 var express = require("express")
 var router = express.Router();
 var {InsertStudent} = require("../controlers/StudentController");
-var {DashboardView,ManageStudent,NewAdmission,ViewStudent,ApproveStudent,InsertAdmin} = require("../controlers/AdminController");
+var {InsertCourseForm, InsertCourseCategory,InsertCourse} = require("../controlers/CourseController");
+
+var {DashboardView,ManageStudent,NewAdmission,ViewStudent,ApproveStudent,InsertAdmin,AdminLogin,} = require("../controlers/AdminController");
+
+
 const { route } = require("express/lib/application");
 var auth = require("../middleware/auth");
 
@@ -16,12 +20,16 @@ router.get("/apply" ,function(req,res){
 router.post("/apply", InsertStudent);
 
 // admin
-router.get("/admin/dashboard",auth.isAuthorized ,DashboardView)
-router.get("/admin/manage-students",auth.isAuthorized ,ManageStudent)
-router.get("/admin/new-admission",auth.isAuthorized ,NewAdmission)
-router.get("/admin/student/:id/view",auth.isAuthorized ,ViewStudent)
-router.get("/admin/approve-student/:id",auth.isAuthorized ,ApproveStudent)
-router.get("/admin/register",auth.isAuthorized ,InsertAdmin)
-
+router.get("/admin/dashboard",auth.isAuthorized ,DashboardView);
+router.get("/admin/manage-students",auth.isAuthorized ,ManageStudent);
+router.get("/admin/new-admission",auth.isAuthorized ,NewAdmission);
+router.get("/admin/student/:id/view",auth.isAuthorized ,ViewStudent);
+router.get("/admin/approve-student/:id",auth.isAuthorized ,ApproveStudent);
+router.get("/admin/register",auth.isAuthorized ,InsertAdmin);
+router.get("/admin/insert-course",auth.isAuthorized,InsertCourseForm);
+router.post("/admin/insert-course-category",auth.isAuthorized,InsertCourseCategory);
+router.post("/admin/insert-course",auth.isAuthorized,InsertCourse);
+router.get("/admin/login", (req,res) => res.render("login"));
+router.post("/admin/login", AdminLogin);
 
 module.exports = router;
