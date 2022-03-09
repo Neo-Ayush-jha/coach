@@ -3,7 +3,7 @@ var app = express()
 var bodyParser = require('body-parser')
 var router = require('./router/web');
 var db = require("./config/db");
-
+require("express-dynamic-helpers-patch")(app)
 // ------------------------
 var session = require("express-session")
 
@@ -18,7 +18,12 @@ app.use(session({
 }))
 
 var urlEncoded = bodyParser.urlencoded({extended:false})
-
+// customize helper
+app.dynamicHelpers({
+    ayush:function(req,res){
+        return req.session;
+    }
+})
 
 
 app.use(urlEncoded)

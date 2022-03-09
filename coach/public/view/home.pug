@@ -2,12 +2,12 @@ extend base.pug
 block content 
     .container-fluid 
             .row
-                .col-4(style="height:100vh")
+                .col-4(style="height:100vh").bg-fuchsia-300
                     .row.mt-5
                         .col-10.mx-auto.mt-5 
-                            .card.mt-5 
+                            .card.mt-5.bg-rose-100 
                                 .card-body 
-                                    h2.card-title Student Login 
+                                    h2.h2.card-title Student Login 
                                     form.mt-2(action="/student/login" method="post")  
                                         .mb-3 
                                             .form-floating 
@@ -19,9 +19,9 @@ block content
                                                 label(for="") Password 
                                         .mb-3 
                                             .form-floating 
-                                                input.btn.btn-success.w-10(type="submit")
+                                                input.btn.btn-success.w-100.text-dark(type="submit")
 
-                .col-8(style="height:100vh").bg-dark.gx-0
+                .col-8(style="height:100vh").bg-rose-100.gx-0.bg-dark
                     include nav.pug
                 
                     

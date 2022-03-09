@@ -1,9 +1,16 @@
 var express = require("express")
 var router = express.Router();
-var {InsertStudent,StudentLogin, dashboard} = require("../controlers/StudentController");
+var {InsertStudent,StudentLogin, dashboard,manageStudentCourse} = require("../controlers/StudentController");
 var {InsertCourseForm, InsertCourseCategory,InsertCourse, ManageCourse} = require("../controlers/CourseController");
 var {DashboardView,ManageStudent,NewAdmission,ViewStudent,ApproveStudent,InsertAdmin,AdminLogin,logout} = require("../controlers/AdminController");
 
+
+// image
+// var PhotoControler = require('../controlers/PhotoController');
+// var upload = require('../middleware/upload')
+// router.get('/photo',PhotoControler.index);
+// router.post('/photo/isert',upload.single('image'),PhotoControler.insert);
+// -------------
 
 const { route } = require("express/lib/application");
 var auth = require("../middleware/auth");
@@ -45,7 +52,9 @@ router.get("/admin/logout", logout);
 
 // student route
 router.get("/student/dashboard",auth.isStudentAuthorized,dashboard);
+router.get("/student/course/manage",auth.isStudentAuthorized,manageStudentCourse);
 router.post("/student/login",StudentLogin);
+
 
 
 

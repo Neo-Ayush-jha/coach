@@ -1,4 +1,4 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.py-1 
+nav.navbar.navbar-expand-lg.navbar-dark.py-1.h-14.bg-gradient-to-r.from-violet-500.to-fuchsia-500.bg-primary
     .container.px-3
         a.navbar-brand(href="") Coaching
 
@@ -8,6 +8,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.py-1
             li.nav-item
                 a.nav-link(href="") About 
             li.nav-item
-                a.nav-link(href="") Course 
-            li.nav-item
-                a.btn.btn-danger(href="/apply") Apply for Admission  
+                a.nav-link(href="") Course
+            if ayush.student_id 
+                li.nav-item
+                    a.btn.btn-danger(href="/apply") Logout  
+            else 
+                li.nav-item
+                    a.btn.btn-danger(href="/apply") Apply for Admission  

@@ -1,0 +1,34 @@
+extend base.pug
+block content
+    .container.mt-3
+        .row
+            .col-3 
+                .card.border-danger
+                    img.card-img-top.p-4.border-success(src="https://th.bing.com/th/id/OIP.gF2EAu1hgOCHVhYWQ2Ui-AHaKW?pid=ImgDet&rs=1",style="height:250px;" alt="")
+                    .card-body 
+                        h1.fs-4.card-title=student.name
+                        p=student.email 
+            .col-9 
+               .container 
+                    .row
+                        .col-8 
+                            .card
+                                .card-body 
+                                    h5.text-uppercase.text-info Apply for Admission 
+                                    hr
+                                    form(action="" method="post") 
+                                        .row 
+                                            .mb-3.col 
+                                                label(for="") Course Title  :- 
+                                                input.form-control(type="text" name="course_title")
+                                            .mb-3.col 
+                                                label(for="") Fee  :-  
+                                                input.form-control(type="text" name="price")
+                                            .mb-3.col 
+                                                label(for="") Duration :-
+                                                input.form-control(type="number" name="duration")
+                                            .mb-3.col 
+                                                label(for="") Joining date  :- 
+                                                input.form-control(type="email" name="doj")
+                                        .mb-3 
+                                            input.btn.btn-success.text-dark(type="submit" , name="send").w-100

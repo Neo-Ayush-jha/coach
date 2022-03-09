@@ -1,9 +1,20 @@
+const res = require("express/lib/response");
+const studentCourse = require("../model/StudentCourseModels");
 var studentModel = require("../model/StudentModels");
 
 function dashboard(req, res){
-    return res.render("students/dashboard")
+    studentModel.findById(req.session.student_id,(error,response)=>{
+        return res.render("students/dashboard",{"student":response})
+    })
 }
 
+async function manageStudentCourse(req,res){
+    var log = req.session.student_id;
+    std = await studentModel.findById(log);
+    stdCourse = await studentCourse.find({studentId:log});
+
+    res.render("students/manageCourse",{'student':std,"studentCourse":stdCourse})
+}
 
 function InsertStudent(req,res){
     var stud= new studentModel({
@@ -50,4 +61,5 @@ module.exports = {
     StudentLogin,
     addStudentCourse,
     dashboard,
+    manageStudentCourse,
 }

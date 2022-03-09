@@ -3,31 +3,34 @@ block content
     .container.mt-3
         .row
             .col-3 
-                .card
-                    img.card-img-top(src="https://th.bing.com/th/id/OIP.i_1f7CqIL7kr4oHugT7QvgAAAA?pid=ImgDet&rs=1", alt="")
+                .card.border-danger
+                    img.card-img-top.p-4.border-success(src="https://th.bing.com/th/id/OIP.gF2EAu1hgOCHVhYWQ2Ui-AHaKW?pid=ImgDet&rs=1", style="height:250px; "  alt="")
                     .card-body 
-                        h2.card-title Ayush Jha 
-                        p NodeJs 
+                        h1.fs-4.card-title=student.name
+                        p=student.email 
             .col-9 
-                .container.bg-warning.p-5.rounded.text-white 
-                    h1.display-3 Welcome, in AWS Coaching 
-                    p.lead Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate deserunt repellat praesentium saepe, iusto fugiat quia minima iste, hic illo aut eius officiis. Sunt odio quae aliquam ullam asperiores aliquid!
-                .row
+                .container.border-5.border.border-warning.p-5.rounded.text-dark
+                    span.fs-1.h-1 Welcome  
+                        h1.display-3  #{student.name} 
+                            span.ms-2.fst-italic.text-decoration-underline.fs-2.fst-lighter in AWS Coaching 
+                            hr.bold
+                    p.lead We know learning online can get a little lonely. So this year, we’re starting community-led local Chapters where students can meet up online or in person and support each other. Join an existing Chapter or create your own. Then start a conversation, get some motivation, or encourage someone else to keep going
+                .row.mt-3
                     .col-4
-                        .card.mt-2.bg-primary.text-white
+                        .card.mt-2.border-primary.text-dark
                             .card-body 
-                                h1 Manage Course 
-                                a.btn.btn-dark(href="") Manage
+                                h1.h4 Manage Course 
+                                a.btn.btn-danger(href="/student/course/manage") Manage
                                 a.btn.btn-success.ms-2(href="") Add
                     .col-4
-                        .card.mt-2.bg-danger.text-white
+                        .card.mt-2.border-danger.text-dark
                             .card-body 
-                                h1 Manage Course 
-                                a.btn.btn-dark(href="") Manage
+                                h1.h4 Manage Course 
+                                a.btn.btn-danger(href="") Manage
                                 a.btn.btn-success.ms-2(href="") Add
                     .col-4
-                        .card.mt-2.bg-info.text-white
+                        .card.mt-2.border-info.text-dark
                             .card-body 
-                                h1 Manage Course 
-                                a.btn.btn-dark(href="") Manage
+                                h1.h4 Manage Course 
+                                a.btn.btn-danger(href="") Manage
                                 a.btn.btn-success.ms-2(href="") Add
