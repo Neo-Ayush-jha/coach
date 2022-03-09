@@ -2,35 +2,26 @@ extend base.pug
 block content 
     .container-fluid 
             .row
-                .col-4.bg-warning(style="height:100vh")
+                .col-4(style="height:100vh")
                     .row.mt-5
                         .col-10.mx-auto.mt-5 
                             .card.mt-5 
                                 .card-body 
                                     h2.card-title Student Login 
-                                    form.mt-2(action="" method="post")  
+                                    form.mt-2(action="/student/login" method="post")  
                                         .mb-3 
                                             .form-floating 
-                                                input.form-control(type="text" placeholder=" enter email")
+                                                input.form-control(type="text" name="email" placeholder=" enter email")
                                                 label(for="") Email/Mobile
                                         .mb-3 
                                             .form-floating 
-                                                input.form-control(type="text" placeholder=" enter password")
+                                                input.form-control(type="text" name="password" placeholder=" enter password")
                                                 label(for="") Password 
                                         .mb-3 
                                             .form-floating 
                                                 input.btn.btn-success.w-10(type="submit")
 
                 .col-8(style="height:100vh").bg-dark.gx-0
-                    nav.navbar.navbar-expand-lg.navbar-dark.bg-info.py-3
-                        .container.px-3
-                            a.navbar-brand(href="") CWS
-                            ul.navbar-nav  
-                                li.nav-item 
-                                    a.nav-link(href="") home
-                                li.nav-item 
-                                    a.nav-link(href="") about
-                                li.nav-item 
-                                    a.nav-link(href="") course
-                                li.nav-item 
-                                    a(href="/apply").btn.btn-danger apply for admission
+                    include nav.pug
+                
+                    

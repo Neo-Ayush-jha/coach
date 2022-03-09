@@ -1,6 +1,7 @@
 extend base.pug
 block content 
-    .container-fluid.bg-danger(style="height:100vh")
+    include nav.pug
+    .container-fluid.bg-danger.mb-5(style="height:100vh")
             .row
                 .col-6.mx-auto
                     .row
@@ -8,14 +9,14 @@ block content
                             .card(style="margin-top:175px") 
                                 .card-body 
                                     h2.card-title Admin Login 
-                                    form.mt-2(action="" method="post")  
+                                    form(action="/admin/login" method="post")  
                                         .mb-3 
                                             .form-floating 
-                                                input.form-control(type="email" placeholder=" enter email")
+                                                input.form-control(type="email" name="email" placeholder=" enter email")
                                                 label(for="") Email/Mobile
                                         .mb-3 
                                             .form-floating 
-                                                input.form-control(type="password" placeholder=" enter password")
+                                                input.form-control(type="password" name="password" placeholder=" enter password")
                                                 label(for="") Password 
                                         .mb-3 
                                             .form-floating 

@@ -2,9 +2,9 @@ extend base.pug
 block con 
     .container 
         .row
-            .col-6.mx-auto.mt-5 
-                .card
-                    h2.card-title APPLY FOR ADMISSION For Code With Sadiq 
+            .col-7.mx-auto.mt-2
+                .card.bg-purple-300 
+                    h2.card-title(style="filter:drop-shadow(10px 10px 15px purple);").fs-1 APPLY FOR ADMISSION For Code With Neo 
                     .card-body
                         form(action="", method="post") 
                             .mb-3 
@@ -24,16 +24,16 @@ block con
                                 input.form-control(type="text" name="address") 
                             .mb-3 
                                 label(for="") GENDER 
-                                .d-flex 
-                                    .form-check.me-2 
-                                        input.form-check-input(type="radio" name="gender" value="male")
-                                        label(for="") MALE
-                                    .form-check.me-2 
-                                        input.form-check-input(type="radio" name="gender" value="female")
-                                        label(for="") FEMALE
-                                    .form-check.me-2 
-                                        input.form-check-input(type="radio" name="gender" value="other")
-                                        label(for="") OTHER
+                                    .d-flex 
+                                        .form-check.me-2 
+                                            input.form-check-input(type="radio" name="gender" value="male")
+                                            label(for="") MALE
+                                        .form-check.me-2 
+                                            input.form-check-input(type="radio" name="gender" value="female")
+                                            label(for="") FEMALE
+                                        .form-check.me-2 
+                                            input.form-check-input(type="radio" name="gender" value="other")
+                                            label(for="") OTHER
                             .mb-3 
                                 label(for="") EDUCATION  
                                 .form-check.me-2 

@@ -1,8 +1,13 @@
 extend base.pug 
-block content 
+block content
+    .row.mb-3 
+        .col-8 
+            h4.mt-1 Mange Students 
+        .col-4 
+            a.btn.btn-success(href="/admin/manage-students").float-end Export Data 
     .card
         .card-body 
-            table.table 
+            table.table.table-sm 
                 tr  
                     th Name
                     th Father

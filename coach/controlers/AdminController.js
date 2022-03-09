@@ -1,10 +1,13 @@
 var studentModel = require("../model/StudentModels");
 var AdminModel = require("../model/AdminModels");
+var CourseModel = require("../model/CourseModels");
 const{response} = require("express");
 
 async function DashboardView(req,res){
-    const students = await studentModel.countDocuments({s});
-    res.render("admin/dashboard",{"students":students});
+    const students = await studentModel.countDocuments();
+    const courses = await CourseModel.countDocuments();
+    const NewAdmission = await studentModel.find({status:1}).countDocuments();
+    res.render("admin/dashboard",{"students":students,"courses":courses,"newAdmission":NewAdmission});
 }
 function ManageStudent(req,res){
     studentModel.find({status:2},(error,response)=>{
@@ -28,7 +31,7 @@ function NewAdmission(req,res){
 }
    async function ApproveStudent(req,res){
     id=req.params.id;
-    await studentModel.findOneAndUpdate({"_id": id},{status:2},{new:true})
+    await studentModel.findOneAndUpdate({"_id": id},{status:2})
     res.redirect("/admin/manage-student");
 
 }
@@ -57,7 +60,9 @@ function InsertAdmin(req,res){
     admin.save();
 }
 async function AdminLogin(req,res){
+    const email = req.body.email;
     try{
+        // const email = req.body.email;
         const{email,password}=req.body;
         console.log(email);
         const result = await AdminModel.findOne({email:email});
@@ -71,23 +76,19 @@ async function AdminLogin(req,res){
                 res.send('worng password')
             }
         }else{
-            res.send('wrong email and password')
+            var err = new Error("Username or password in incorrect try again")
+            err.status = 401;
+            res.redirect("/admin/login");
         }
     }catch (error){
         console.log(error.massage);
     }
 }
 
-// function logout(req, res){
-//     req.session.destroy(function(error){
-//         if(error){
-//             console.log('session not deleted');
-//         }
-//         else{
-            
-//         }
-//     })
-// }
+function logout(req,res){
+    req.session.destory();
+    res.redirect("/admin/login");
+}
 
 
 module.exports = {
@@ -100,4 +101,5 @@ module.exports = {
     DeactiveStudent,
     DeleteStudent,
     AdminLogin,
+    logout,
 }

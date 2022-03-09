@@ -5,10 +5,10 @@ block content
             .col-6  
                 p.fs-3 View Student Details 
             .col-6 
-                a.btn.btn-success(href=`/admin/approve-student/${student._id}`) Approve Admission 
+                .btn-group.float-end 
+                    a.btn.btn-success(href=`/admin/approve-student/${student._id}`) Approve Admission 
                 a.btn.btn-danger(href="") Deactivate
-
-    table.table 
+    table.table.table-border.mt-3 
         tr 
             th Name 
             td=student.name

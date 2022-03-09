@@ -1,6 +1,7 @@
 AdminModel = require("../model/AdminModels")
+studentModel = require("../model/StudentModels")
 
-module.exports.isAuthorized = function(req,res,next){
+ function  isAuthorized(req,res,next){
     AdminModel.findById(req.session.user_id).exec(function(error,admin){
         if(error){
             return (error);
@@ -14,4 +15,25 @@ module.exports.isAuthorized = function(req,res,next){
         }
     })
 
+}
+
+function  isStudentAuthorized(req,res,next){
+    studentModel.findById(req.session.student_id).exec(function(error,admin){
+        if(error){
+            return next(error);
+        }
+        else{
+            if(admin === null){
+                res.redirect("/");
+            }
+            else{
+                return next();
+            }
+        }
+    })
+}
+
+module.exports ={
+    isAuthorized,
+    isStudentAuthorized,
 }
