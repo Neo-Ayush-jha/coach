@@ -2,13 +2,14 @@ extend base.pug
 block content 
     .container-fluid 
             .row
-                .col-4(style="height:100vh").bg-fuchsia-300
+                .col-4(style="height:100vh").bg-danger
                     .row.mt-5
-                        .col-10.mx-auto.mt-5 
-                            .card.mt-5.bg-rose-100 
+                        .col-10.mx-auto.mt-5
+                            .card.mt-5.bg-rose-100.py-3 
                                 .card-body 
                                     h2.h2.card-title Student Login 
-                                    form.mt-2(action="/student/login" method="post")  
+                                    hr
+                                    form.mt-3(action="/student/login" method="post")  
                                         .mb-3 
                                             .form-floating 
                                                 input.form-control(type="text" name="email" placeholder=" enter email")

@@ -14,21 +14,14 @@ block content
                         .col-8 
                             .card
                                 .card-body 
-                                    h5.text-uppercase.text-info Apply for Admission 
+                                    h5.h2.text-uppercase.text-info Add for Course 
                                     hr
-                                    form(action="" method="post") 
-                                        .row 
-                                            .mb-3.col 
-                                                label(for="") Course Title  :- 
-                                                input.form-control(type="text" name="course_title")
-                                            .mb-3.col 
-                                                label(for="") Fee  :-  
-                                                input.form-control(type="text" name="price")
-                                            .mb-3.col 
-                                                label(for="") Duration :-
-                                                input.form-control(type="number" name="duration")
-                                            .mb-3.col 
-                                                label(for="") Joining date  :- 
-                                                input.form-control(type="email" name="doj")
-                                        .mb-3 
-                                            input.btn.btn-success.text-dark(type="submit" , name="send").w-100
+                                    form(action="", method="post") 
+                                        .mb-3.mt-2 
+                                            label(for="") Select Course
+                                            select.form-select(name="courseId") 
+                                                each x in course 
+                                                    option(value=`${x._id}`)=x.title
+                                        .mb-2 
+                                            input.btn.btn-success.w-100.text-danger.fs-3.p-1(type="submit")
+                                    

@@ -1,7 +1,13 @@
 var express = require("express")
 var router = express.Router();
-var {InsertStudent,StudentLogin, dashboard,manageStudentCourse} = require("../controlers/StudentController");
+
+// student--------------------------------------------------------------------------
+var {InsertStudent,StudentLogin, dashboard,manageStudentCourse,addStudentCourse,addStudentCourseStore,managePayment} = require("../controlers/StudentController");
+
+// course--------------------------------------------------------------------------
 var {InsertCourseForm, InsertCourseCategory,InsertCourse, ManageCourse} = require("../controlers/CourseController");
+
+// admin--------------------------------------------------------------------------
 var {DashboardView,ManageStudent,NewAdmission,ViewStudent,ApproveStudent,InsertAdmin,AdminLogin,logout} = require("../controlers/AdminController");
 
 
@@ -25,20 +31,20 @@ router.get("/apply" ,function(req,res){
 
 router.post("/apply", InsertStudent);
 
-// admin
+// admin-------------------------------------------------------------------------------
 router.get("/admin/dashboard",auth.isAuthorized ,DashboardView);
 router.get("/admin/manage-students",auth.isAuthorized ,ManageStudent);
 router.get("/admin/new-admission",auth.isAuthorized ,NewAdmission);
 router.get("/admin/student/:id/view",auth.isAuthorized ,ViewStudent);
 router.get("/admin/approve-student/:id",auth.isAuthorized ,ApproveStudent);
 router.get("/admin/register",auth.isAuthorized ,InsertAdmin);
-// courses
+// courses------------------------------------------------------------------------------
 router.get("/admin/manageCourse",auth.isAuthorized ,ManageCourse);
 router.get("/admin/insert-course",auth.isAuthorized,InsertCourseForm);
 router.post("/admin/insert-course-category",auth.isAuthorized,InsertCourseCategory);
 router.post("/admin/insert-course",auth.isAuthorized,InsertCourse);
 
-// login admin
+// login admin---------------------------------------------------------------
 router.get("/admin/login", (req,res) =>{
     if(req.session.user_id){
         return res.redirect("/admin/dashboard");
@@ -50,9 +56,12 @@ router.post("/admin/login", AdminLogin);
 router.get("/admin/logout", logout);
 
 
-// student route
+// student route------------------------------------------------------------------------
 router.get("/student/dashboard",auth.isStudentAuthorized,dashboard);
 router.get("/student/course/manage",auth.isStudentAuthorized,manageStudentCourse);
+router.get("/student/course/add",auth.isStudentAuthorized,addStudentCourse);
+router.get("/student/payment/manage",auth.isStudentAuthorized,managePayment);
+router.post("/student/course/add",auth.isStudentAuthorized,addStudentCourseStore);
 router.post("/student/login",StudentLogin);
 
 

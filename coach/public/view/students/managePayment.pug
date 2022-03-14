@@ -1,0 +1,33 @@
+extend base.pug
+block content
+    .container.mt-3
+        .row
+            .col-3 
+                .card.border-danger
+                    //- img.card-img-top.p-4.border-success(src="https://th.bing.com/th/id/OIP.gF2EAu1hgOCHVhYWQ2Ui-AHaKW?pid=ImgDet&rs=1", style="height:250px; "  alt="")
+                    img.card-img-top.p-4.border-success(src="https://th.bing.com/th/id/R.366fbdec721b8e93644e153738054bce?rik=CtsJRMfDD477CA&riu=http%3a%2f%2fwww.allwrestlingsuperstars.com%2fwp-content%2fuploads%2f2014%2f12%2fBatista-Shouting.jpg&ehk=MEGGBLdAIWHNBGI7bMh%2bSjotGm5PxjaJcvxyiNt%2bzms%3d&risl=&pid=ImgRaw&r=0", style="height:250px; "  alt="")
+                    .card-body 
+                        h1.fs-4.card-title=student.name
+                        p=student.email 
+            .col-9 
+               .container 
+                    .card
+                        .card-body 
+                            h1.text-center.text-danger.h1 Manage Payment 
+                            hr
+                            br
+                            table.table
+                                tr 
+                                    th Course Title
+                                    th Fee
+                                    th Status
+                                    th  Date of Payment
+                                    th Action
+                                each x in studentPayment  
+                                    tr 
+                                        td=x.courseId_title
+                                        td=x.amount
+                                        td=x.status
+                                        td=x.dop
+                                        td
+                                            a.btn.btn-danger.btn-sm(href="") Delete

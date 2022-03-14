@@ -4,7 +4,13 @@ nav.navbar.navbar-expand-lg.navbar-dark.py-1.h-14.bg-gradient-to-r.from-violet-5
 
         ul.navbar-nav 
             li.nav-item
-                a.nav-link(href="/") Home 
+                //- a.nav-link(href="/") Home 
+                if ayush.student_id 
+                    li.nav-item
+                        a.nav-link.ms-2(href="/student/dashboard") Home  
+                else 
+                    li.nav-item
+                        a.nav-link(href="/") Home
             li.nav-item
                 a.nav-link(href="") About 
             li.nav-item

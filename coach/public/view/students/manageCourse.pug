@@ -11,18 +11,23 @@ block content
                         p=student.email 
             .col-9 
                .container 
-                    table.table
-                        tr 
-                            th Course Title
-                            th Fee
-                            th Duration
-                            th Joining date
-                            th Action
-                        each x in studentCourse 
-                            tr 
-                                td=x.course_title
-                                td=x.price
-                                td=x.duration
-                                td=x.doj
-                                td
-                                    a.btn.btn-danger.btn-sm(href="") 
+                    .card
+                        .card-body
+                            h1.text-center.text-danger.h1 Manage Course 
+                            hr
+                            br
+                            table.table
+                                tr 
+                                    th Course Title
+                                    th Fee
+                                    th Duration
+                                    th Joining date
+                                    th Action
+                                each x in studentCourse
+                                    tr  
+                                        td=x.courseId.title 
+                                        td=x.courseId.price
+                                        td=x.courseId.duration
+                                        td=x.doj
+                                        td
+                                            a.btn.btn-danger.btn-sm(href="") delete
