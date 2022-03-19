@@ -2,13 +2,13 @@ var express = require("express")
 var router = express.Router();
 
 // student--------------------------------------------------------------------------
-var {InsertStudent,StudentLogin, dashboard,manageStudentCourse,addStudentCourse,addStudentCourseStore,managePayment} = require("../controlers/StudentController");
+var {InsertStudent,StudentLogin, dashboard,manageStudentCourse,addStudentCourse,addStudentCourseStore,managePayment,requstPayment} = require("../controlers/StudentController");
 
 // course--------------------------------------------------------------------------
 var {InsertCourseForm, InsertCourseCategory,InsertCourse, ManageCourse} = require("../controlers/CourseController");
 
 // admin--------------------------------------------------------------------------
-var {DashboardView,ManageStudent,NewAdmission,ViewStudent,ApproveStudent,InsertAdmin,AdminLogin,logout} = require("../controlers/AdminController");
+var {DashboardView,ManageStudent,NewAdmission,ViewStudent,ApproveStudent,InsertAdmin,AdminLogin,logout,approvePayment} = require("../controlers/AdminController");
 
 
 // image
@@ -43,6 +43,8 @@ router.get("/admin/manageCourse",auth.isAuthorized ,ManageCourse);
 router.get("/admin/insert-course",auth.isAuthorized,InsertCourseForm);
 router.post("/admin/insert-course-category",auth.isAuthorized,InsertCourseCategory);
 router.post("/admin/insert-course",auth.isAuthorized,InsertCourse);
+router.get("/admin/payment/:p_id/approve",auth.isAuthorized,approvePayment);
+
 
 // login admin---------------------------------------------------------------
 router.get("/admin/login", (req,res) =>{
@@ -61,6 +63,7 @@ router.get("/student/dashboard",auth.isStudentAuthorized,dashboard);
 router.get("/student/course/manage",auth.isStudentAuthorized,manageStudentCourse);
 router.get("/student/course/add",auth.isStudentAuthorized,addStudentCourse);
 router.get("/student/payment/manage",auth.isStudentAuthorized,managePayment);
+router.get("/student/payment/manage/:p_id/request",auth.isStudentAuthorized,requstPayment);
 router.post("/student/course/add",auth.isStudentAuthorized,addStudentCourseStore);
 router.post("/student/login",StudentLogin);
 

@@ -3,6 +3,8 @@ const studentCourse = require("../model/StudentCourseModels");
 const courseModel = require("../model/CourseModels");
 var studentModel = require("../model/StudentModels");
 var PaymentModel = require("../model/PaymentModels");
+const moment = require("moment");
+const payment = require("../model/PaymentModels");
 
 async function getUser(req){
      std= await studentModel.findById(req.session.student_id);
@@ -72,7 +74,7 @@ async function addStudentCourseStore(req,res){
 }
 
 
-async function addStudentCourse(req,res){
+async function addStudentCourse(req,res){ 
     
     // var log = req.session.student_id;
     courseData = await courseModel.find({});
@@ -83,30 +85,85 @@ async function addStudentCourse(req,res){
         return res.render("students/addCourse",{"student":std,"course":courseData})
     }
 
-    // payment
+//------------------------------------ {[(payment)]}------------------------------------------
+
+    function requstPayment(req,res){
+        pay_id = req.params.p_id;
+        PaymentModel.updateOne({_id:pay_id},{status:-1},(error,response)=>{
+            if(error) {console.log(error)};
+            return res.redirect("/student/payment/manage");
+        })
+    }
+
 async function generatePayment(req,res){
     var log = req.session.student_id;
     stdCourse =await studentCourse.find({studentId:log}).populate("courseId");
     console.log(stdCourse)
 
     doj = stdCourse[0].doj;
-    currentData = new Date();
+    var log = req.session.student_id;
+    stdCourse = await studentCourse.find({studentId:log}).populate("courseId");
+    console.log(doj)
 
-    console.log(doj);
+    doj = stdCourse[0].doj;
 
-    // payment = PaymentModel({
 
-    // })
 
+    currentDate = new Date();
+    CurrYear =currentDate.getFullYear();
+    currMonth=currentDate.getMonth() + 1;
+    currDate = currentDate.getDate();
+
+    dateOfJoin = new Date(doj)
+    dojYear = dateOfJoin.getFullYear();
+    dojMonth = dateOfJoin.getMonth() + 1;
+    dojDate = dateOfJoin.getDate();
+
+    diffMonth = moment([CurrYear,currMonth,currDate]).diff(moment([dojYear,dojMonth,dojDate]),"months")
+
+    var counterMonth = dojMonth;
+    var countterYear = dojYear;
+
+    for(i=0;i<diffMonth;i++){
+        var checkPaymentRecord = await PaymentModel.exists({
+            stdId:log,
+            courseId:stdCourse[0].courseId,
+            month:counterMonth,
+            year:countterYear,
+        }).then((exist)=>{
+            if(exist){
+                // 
+            }
+            else{
+                PaymentModel.create({
+                    stdId:log,
+                    courseId:stdCourse[0].courseId,
+                    month:counterMonth,
+                    year:countterYear,
+                    dop:currentDate,
+                    amount: 700,
+                })
+            }
+        })
+        if(counterMonth>11){
+            counterMonth /=12;
+            countterYear++;
+        }
+        else{
+            counterMonth++;
+        }
+    }
+    console.log(currentDate);
 }
 async function managePayment(req,res){
-    generatePayment(req,res);
+    await generatePayment(req,res);
     std = await getUser(req);
     studentPayment = await PaymentModel.find({stdId:std._id}).populate("courseId")
     res.render("students/managePayment",{studentPayment:studentPayment,"student":std});
 }
 
-// login
+
+// login----------------------------------------------------------------
 StudentLogin= async(req,res)=>{
     try{
         const{email,password}=req.body;
@@ -136,7 +193,7 @@ module.exports = {
     dashboard,
     manageStudentCourse,
     addStudentCourseStore,
-    generatePayment,
     managePayment,
+    requstPayment,
 }
    

@@ -1,13 +1,28 @@
 var studentModel = require("../model/StudentModels");
 var AdminModel = require("../model/AdminModels");
 var CourseModel = require("../model/CourseModels");
+var PaymentModel = require("../model/PaymentModels");
 const{response} = require("express");
 
 async function DashboardView(req,res){
     const students = await studentModel.countDocuments();
     const courses = await CourseModel.countDocuments();
     const NewAdmission = await studentModel.find({status:1}).countDocuments();
-    res.render("admin/dashboard",{"students":students,"courses":courses,"newAdmission":NewAdmission});
+    const requestedPayment = await PaymentModel.find({status:-1}).populate("stdId").populate("courseId");
+    const NewAdmiaaion = await studentModel.find({status:-1}).countDocuments();
+    res.render("admin/dashboard",{
+        "students":students,
+        "courses":courses,
+        "newAdmission":NewAdmission,
+        "requestedPayment":requestedPayment
+    });
+}
+ function approvePayment(req,res){
+    pay_id = req.params.p_id;
+     PaymentModel.updateOne({_id:pay_id},{status:1},(error,response)=>{
+        if(error){console.log(error)};
+        return res.redirect("/admin/dashboard");
+    })
 }
 function ManageStudent(req,res){
     studentModel.find({status:2},(error,response)=>{
@@ -102,4 +117,5 @@ module.exports = {
     DeleteStudent,
     AdminLogin,
     logout,
+    approvePayment,
 }

@@ -7,12 +7,12 @@ block content
                     h1.display-6.text-danger=students
                     p.small.text-muted Total Students
         .col-3
-            .card.border.border-danger
+            .card.border.border-success
                 .card-body 
-                    h1.display-6.text-info 5000/-
+                    h1.display-6.text-info 7000/-
                     p.small.text-muted Total Paid
         .col-3
-            .card.border.border-danger
+            .card.border.border-info
                 .card-body 
                     h1.display-6.text-success 4000/-
                     p.small.text-muted Total due
@@ -21,4 +21,18 @@ block content
                 .card-body 
                     h1.display-6.text-danger=courses
                     p.small.text-muted Total Courses
-        
+    .row
+        .col-6
+            table.table
+                tr 
+                    th Student Name    
+                    th Month    
+                    th Course    
+                    th Action 
+                each x in requestedPayment 
+                    tr 
+                        td=x.stdId.name 
+                        td #{x.month}/#{x.year}    
+                        td=x.courseId.title 
+                        td  
+                            a.btn.btn-success(href=`/admin/payment/${x._id}/approve`) Approve 
